@@ -15,6 +15,7 @@ var jsonWrite = function(res, ret) {
 const url = "http://192.168.232.130/geometryserver";
 
 module.exports = {
+    //缓冲区
     buffer: function(req, res, next) {
         // 获取前台页面传过来的参数
         var param = req.query || req.params;
@@ -30,8 +31,20 @@ module.exports = {
 
         });
     },
+    //自相交处理
     selfintersect: function(req, res, next) {
         // 获取前台页面传过来的参数
         var param = req.query || req.params;
+        http.get(url + "/selfintersect?" + $util.getParamsString(param), function(request, response) {
+            var html = '';
+            request.on('data', function(data) {
+                html += data;
+            });
+            request.on('end', function() {
+                $util.setHeader(res);
+                jsonWrite(res, JSON.parse(html));
+            });
+
+        });
     }
 };
