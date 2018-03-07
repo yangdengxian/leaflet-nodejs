@@ -12,7 +12,7 @@ var jsonWrite = function(res, ret) {
     }
 };
 
-const url = "http://192.168.232.130/geometryserver";
+const url = $util.urlObj.server_url;
 
 module.exports = {
     //缓冲区

@@ -3,6 +3,10 @@
  */
 
 module.exports = {
+    urlObj: {
+        server_url: "http://192.168.232.130/geometryserver"
+    },
+
     extend: function(target, source, flag) {
         for (var key in source) {
             if (source.hasOwnProperty(key))
